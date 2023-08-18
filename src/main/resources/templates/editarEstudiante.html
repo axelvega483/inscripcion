@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Editar Estudiante</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    </head>
+    <body>
+
+        <header class="menu">
+            <nav class="nav">
+                <a class="nav-link" th:href="@{/admin}">Inicio</a> 
+                <a class="nav-link active" aria-current="page" th:href="@{/curso}">Cursos</a>
+            </nav>
+        </header>
+
+        <main class="estuprincipal">
+
+            <form class="estuform" th:action="@{/estudiante/GuardarModificacion}" method="POST" th:object="${estudiante}">
+                <input readonly="true" th:field="*{id_estudiante}"/>
+                <input type="text" placeholder="nombre" th:field="*{nombreEstudiante}"/>
+                <input type="number" placeholder="edad" th:field="*{edad}"/>
+                <input type="number" placeholder="dni" th:field="*{dni}"/>
+                <input type="text" placeholder="direccion" th:field="*{direccion}"/>             
+                <button type="submit">Guardar</button>
+             </form>
+            <h2>Estudiante</h2>
+
+            <table class="table">
+                <thead> 
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Edad
+                        </th>
+                        <th>
+                            Dni
+                        </th>
+                        <th>
+                            Dirección
+                        </th>
+                        <th>
+                            Acción
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="estudiante : ${listaEstudiantes}">
+                        <td th:text="${estudiante.id_estudiante}">
+
+                        </td>
+
+                        <td th:text="${estudiante.nombreEstudiante}">
+
+                        </td>
+                        <td th:text="${estudiante.edad}">
+
+                        </td>
+                        <td th:text="${estudiante.dni}">
+
+                        </td>
+                        <td th:text="${estudiante.direccion}">
+
+                        </td>
+                        <td>
+                            <a th:href="@{/estudiante/eliminar/}+${estudiante.id_estudiante}">eliminar</a>
+                            <a th:href="@{/estudiante/editarEstudiante/}+${estudiante.id_estudiante}">editar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    </body>
+</html>

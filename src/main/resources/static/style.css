@@ -1,0 +1,13 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.principal{
+    display: flex;
+    
+}
+.formulario{
+    display: flex;
+    align-content: center;
+    text-align: center;
+}
